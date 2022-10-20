@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cctype>
+#include "funcs.h"  
 using namespace std;
 
 string removeLeadingSpaces(string line){
@@ -7,14 +8,13 @@ string removeLeadingSpaces(string line){
     char character;
     bool removespaces;
     for(int i = 0; i < line.length(); i++){
-        character = line[i];
 
         if(line[i] == "\n")
             removespaces = true;
-        else if(!line[i] == "\n")
+        else if(!isspace(line[i]) == "\n")
             removespaces = false;
 
-        if(!isspace(character) || line[i] != '\n' || !removespaces)
+        if(!isspace(character) || line[i] == '\n' || !removespaces)
                 newstring += line.substr(i,1);
         }
     return newstring;
