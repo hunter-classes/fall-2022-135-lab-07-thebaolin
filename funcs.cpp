@@ -1,40 +1,63 @@
 #include <iostream>
 #include <cctype>
-#include "funcs.h"  
+#include <string>
+#include "funcs.h" 
+#include <fstream>
 using namespace std;
 
 string removeLeadingSpaces(string line){
     string newstring = "";
-    char character;
-    bool removespaces;
+    bool seenchar = false;
+    
     for(int i = 0; i < line.length(); i++){
-
-        if(line[i] == "\n")
-            removespaces = true;
-        else if(!isspace(line[i]) == "\n")
-            removespaces = false;
-
-        if(!isspace(character) || line[i] == '\n' || !removespaces)
-                newstring += line.substr(i,1);
-        }
+        if(!isspace(line[i]) && !seenchar)
+            seenchar = true;
+        if(seenchar)
+            newstring += line[i];
+        if(line[i] == '\n')
+            seenchar = false;
+    }
     return newstring;
 }
 
 int countChar(string line, char c){
-    int opencount = 0, closedcount = 0, charcount = 0;
+    int charcount = 0;
 
     for(int i = 0; i < line.length(); i++){
-        if(line[i] == '{'){
-            opencount++;
-            if(line[i])
-        }
-        if(line[i] == '}'){
-            closedcount++;
-        }
-        if(line[i] == c){
+        if(line[i] == c)
             charcount++;
-        }
     }
-
     return charcount;
+}
+
+string addtabs(){
+    string newline = "";
+    string newstr = "";
+    int counter = 0;
+
+    ifstream badcode("badcode.cpp");
+    while(getline(badcode, newline)){ 
+        newline = removeLeadingSpaces(newline);
+        if(newline[0] == '}')
+            counter--;
+        
+        for(int i = 0; i < counter; i++)
+            newstr += '\t';
+    
+        newstr = newstr + newline + '\n';
+        counter += countChar(newline, '{');
+    }
+    badcode.close();
+    return newstr;
+}
+
+string removetabs(){
+    string result, line; 
+    ifstream badcode("badcode.cpp");
+
+        while(getline(badcode,line))
+            result += removeLeadingSpaces(line) + "\n";
+            
+    badcode.close();
+    return result;
 }
