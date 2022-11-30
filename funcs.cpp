@@ -4,7 +4,7 @@
 #include "funcs.h" 
 #include <fstream>
 using namespace std;
-
+//deleting that ^^
 string removeLeadingSpaces(string line){
     string newstring = "";
     bool seenchar = false;
