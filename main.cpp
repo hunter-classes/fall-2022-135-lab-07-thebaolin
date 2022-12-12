@@ -1,9 +1,9 @@
 #include <iostream>
 #include "funcs.h"
-//#include "funcs.cpp"
 #include <fstream>
 using namespace std;
 
+//added random change
 int main(){
     cout<<"removeLeadingSpaces (d     sdaint x = 1;\n  happy halloween!)"<<endl;
     cout << "\n-----------------------------"<<endl;
