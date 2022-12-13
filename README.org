@@ -1,10 +1,10 @@
 * Fall 2022 - Lab 07
 
-* Last name: Ging
+* Last name: Chang
 
-* First name: Patrick
+* First name: Baolin
 
-* GitHub username: thepatrickging
+* GitHub username: thebaolin
 
 * Notes:
 
